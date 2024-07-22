@@ -1,0 +1,8 @@
+.user_layout {
+  width: 100vw;
+  min-height: 100vh;
+}
+.user_avatar {
+  float: right;
+  margin: 15px 50px 10px 0px;
+}
