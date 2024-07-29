@@ -17,6 +17,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 import Tagindex from "../tag";
 import DashboardIndex from "../dashboard";
+import FinanceIndex from "../finance";
 import type { MenuProps } from "antd";
 import NoPage from "../no_page";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
@@ -79,14 +80,14 @@ const LayoutIndex: React.FC = () => {
               label: "Dashboard",
             },
             {
-              key: "hardware",
+              key: "finance",
               icon: <ToolOutlined />,
-              label: "Hardware",
+              label: "Finance",
               children: [
                 {
-                  key: "hardware/tag",
+                  key: "finance/finance",
                   icon: <TagOutlined />,
-                  label: "Tag",
+                  label: "finance",
                 },
               ],
             },
@@ -133,6 +134,8 @@ const LayoutIndex: React.FC = () => {
             <Route index element={<DashboardIndex />} />
             <Route path="/dashboard" element={<DashboardIndex />} />
             <Route path="/hardware/tag" element={<Tagindex />} />
+            <Route path="/finance/finance" element={<FinanceIndex />} />
+
             <Route path="*" element={<NoPage />} />
           </Routes>
         </Content>
