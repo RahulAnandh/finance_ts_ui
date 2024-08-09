@@ -3,6 +3,8 @@ import userReducer from "../features/user/userSlice";
 
 import tagSlice from "../features/tag/tagSlice";
 import financeSlice from "../features/finance/financeSlice";
+import bankSlice from "../features/bank/bankSlice";
+import employeeSlice from "../features/employee/employeeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
 
     tag: tagSlice,
     finance: financeSlice,
+    bank: bankSlice,
+    employee: employeeSlice,
   },
 });
 

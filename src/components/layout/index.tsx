@@ -10,6 +10,9 @@ import {
   UserOutlined,
   LogoutOutlined,
   ProfileOutlined,
+  BankOutlined,
+  UsergroupAddOutlined,
+  PayCircleOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme, Avatar, Dropdown, Space } from "antd";
 import "./index.css";
@@ -18,6 +21,8 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Tagindex from "../tag";
 import DashboardIndex from "../dashboard";
 import FinanceIndex from "../finance";
+import BankIndex from "../bank";
+import EmployeeIndex from "../employee";
 import type { MenuProps } from "antd";
 import NoPage from "../no_page";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
@@ -81,13 +86,37 @@ const LayoutIndex: React.FC = () => {
             },
             {
               key: "finance",
-              icon: <ToolOutlined />,
+              icon: <PayCircleOutlined />,
               label: "Finance",
               children: [
                 {
                   key: "finance/finance",
-                  icon: <TagOutlined />,
+                  icon: <PayCircleOutlined />,
                   label: "finance",
+                },
+              ],
+            },
+            {
+              key: "bank",
+              icon: <BankOutlined />,
+              label: "Bank",
+              children: [
+                {
+                  key: "bank/bank",
+                  icon: <BankOutlined />,
+                  label: "Bank",
+                },
+              ],
+            },
+            {
+              key: "employee",
+              icon: <UsergroupAddOutlined />,
+              label: "Employee",
+              children: [
+                {
+                  key: "employee/employee",
+                  icon: <UsergroupAddOutlined />,
+                  label: "Employee",
                 },
               ],
             },
@@ -135,6 +164,8 @@ const LayoutIndex: React.FC = () => {
             <Route path="/dashboard" element={<DashboardIndex />} />
             <Route path="/hardware/tag" element={<Tagindex />} />
             <Route path="/finance/finance" element={<FinanceIndex />} />
+            <Route path="/bank/bank" element={<BankIndex />} />
+            <Route path="/employee/employee" element={<EmployeeIndex />} />
 
             <Route path="*" element={<NoPage />} />
           </Routes>
