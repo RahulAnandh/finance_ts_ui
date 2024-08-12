@@ -18,10 +18,13 @@ import {
   undoDeleteEmployee,
 } from "../../features/employee/employeeSlice";
 interface DataType {
-  employee_id: string;
-  town: string;
-  city: string;
-  district: string;
+  id: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth: string;
+  house_name: string;
+  address: string;
+  pin_code: string;
   state: string;
 }
 
@@ -44,20 +47,23 @@ const NonDeployedEmployees: React.FC = () => {
   useEffect(() => {
     setData(employee.employee_list.deleted);
   }, [employee.employee_list]);
-  const isEditing = (record: DataType) => record.employee_id === editingKey;
+  const isEditing = (record: DataType) => record.id === editingKey;
 
   const edit = (record: Partial<DataType>) => {
     form.setFieldsValue({
-      employee_id: record.employee_id,
-      town: record.town,
-      city: record.city,
-      district: record.district,
+      id: record.id,
+      first_name: record.first_name,
+      last_name: record.last_name,
+      date_of_birth: record.date_of_birth,
+      house_name: record.house_name,
+      address: record.address,
+      pin_code: record.pin_code,
       state: record.state,
     });
-    setEditingKey(record.employee_id);
+    setEditingKey(record.id);
   };
   const deleteFunction = (record: Partial<DataType>) => {
-    dispatch(deleteEmployee(record.employee_id));
+    dispatch(deleteEmployee(record.id));
     // form.setFieldsValue({
     //   madeByName: "",
     //   madeDate: "",
@@ -68,7 +74,7 @@ const NonDeployedEmployees: React.FC = () => {
     setEditingKey("");
   };
   const undoDeleteFunction = (record: Partial<DataType>) => {
-    dispatch(undoDeleteEmployee(record.employee_id));
+    dispatch(undoDeleteEmployee(record.id));
     setEditingKey("");
   };
 
@@ -80,15 +86,18 @@ const NonDeployedEmployees: React.FC = () => {
     try {
       const row = (await form.validateFields()) as DataType;
       const newData = [...data];
-      const index = newData.findIndex((item) => key === item.employee_id);
+      const index = newData.findIndex((item) => key === item.id);
       if (index > -1) {
         const item = newData[index];
         dispatch(
           updateEmployee({
-            employee_id: item.employee_id,
-            town: row.town,
-            city: row.city,
-            district: row.district,
+            id: item.id,
+            first_name: row.first_name,
+            last_name: row.last_name,
+            date_of_birth: row.date_of_birth,
+            house_name: row.house_name,
+            address: row.address,
+            pin_code: row.pin_code,
             state: row.state,
           })
         );
@@ -110,33 +119,50 @@ const NonDeployedEmployees: React.FC = () => {
   const columns = [
     {
       title: "Employee Id",
-      dataIndex: "employee_id",
-      width: "15%",
+      dataIndex: "id",
+      width: 100,
       editable: false,
     },
-
     {
-      title: "Town",
-      dataIndex: "town",
-      width: "20%",
+      title: "First Name",
+      dataIndex: "first_name",
+      width: 100,
       editable: true,
     },
     {
-      title: "City",
-      dataIndex: "city",
-      width: "15%",
+      title: "Last Name",
+      dataIndex: "last_name",
+      width: 100,
       editable: true,
     },
     {
-      title: "District",
-      dataIndex: "district",
-      width: "15%",
+      title: "Date of Birth",
+      dataIndex: "date_of_birth",
+      width: 100,
+      editable: true,
+    },
+    {
+      title: "House/Flat",
+      dataIndex: "house_name",
+      width: 100,
+      editable: true,
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      width: 200,
+      editable: true,
+    },
+    {
+      title: "Pin Code",
+      dataIndex: "pin_code",
+      width: 100,
       editable: true,
     },
     {
       title: "State",
       dataIndex: "state",
-      width: "15%",
+      width: 100,
       editable: true,
     },
     {
@@ -148,7 +174,7 @@ const NonDeployedEmployees: React.FC = () => {
         return editable ? (
           <span>
             <Typography.Link
-              onClick={() => save(record.employee_id)}
+              onClick={() => save(record.id)}
               style={{ marginRight: 8 }}
             >
               Save
@@ -266,6 +292,7 @@ const NonDeployedEmployees: React.FC = () => {
         }}
         loading={employee.loading_employee_list}
         size="small"
+        scroll={{ x: 1300 }}
       />
     </Form>
   );

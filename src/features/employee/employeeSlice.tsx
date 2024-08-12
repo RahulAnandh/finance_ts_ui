@@ -6,6 +6,7 @@ import {
   TypeHardwareTeam,
   TypeCreateEmployee,
   TypeEmployeeList,
+  TypeUpdateEmployee,
 } from "./type";
 import { BASE_URL } from "../constant";
 const initialState: EmployeeState = {
@@ -70,9 +71,9 @@ export const createEmployee = createAsyncThunk(
 );
 export const updateEmployee = createAsyncThunk(
   "employee/updateEmployee",
-  async (payload: TypeCreateEmployee) => {
+  async (payload: TypeUpdateEmployee) => {
     const response = await fetch(
-      `${BASE_URL}/employee/update_employee/${payload.employee_id}`,
+      `${BASE_URL}/employee/update_employee/${payload.id}`,
       {
         method: "PUT",
         headers: {

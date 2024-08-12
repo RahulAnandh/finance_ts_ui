@@ -19,10 +19,22 @@ export interface TypeHardwareTeam {
 }
 
 export interface TypeCreateEmployee {
-  employee_id: string;
-  town: string;
-  city: string;
-  district: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth: string;
+  house_name: string;
+  address: string;
+  pin_code: string;
+  state: string;
+}
+export interface TypeUpdateEmployee {
+  id: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth: string;
+  house_name: string;
+  address: string;
+  pin_code: string;
   state: string;
 }
 
@@ -33,10 +45,12 @@ export interface TypeMessage {
 
 export interface TypeEmployeeList {
   id: number;
-  employee_id: string;
-  town: string;
-  city: string;
-  district: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth: string;
+  house_name: string;
+  address: string;
+  pin_code: string;
   state: string;
   is_deleted: boolean;
 }
