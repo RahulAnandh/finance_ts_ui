@@ -1,16 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  DatePicker,
-  Drawer,
-  Form,
-  Input,
-  Select,
-  Row,
-  Col,
-  Button,
-  GetProps,
-} from "antd";
-import dayjs from "dayjs";
+import { Drawer, Form, Input, Col, Button } from "antd";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   setFinanceFormActive,
@@ -25,7 +14,6 @@ const FinanceForm: React.FC = () => {
     dispatch(getUsershardwareTeam());
   }, []);
   const onFinish = (values: any) => {
-    console.log("1---A", values);
     dispatch(
       createFinance({
         finance_id: values.finance_id,
@@ -35,11 +23,6 @@ const FinanceForm: React.FC = () => {
         state: values.state,
       })
     );
-  };
-  type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
-
-  const disabledDate: RangePickerProps["disabledDate"] = (current) => {
-    return current && current > dayjs().endOf("day");
   };
   return (
     <>

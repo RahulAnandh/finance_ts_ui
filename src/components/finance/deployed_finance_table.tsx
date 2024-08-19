@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import {
-  Form,
-  Input,
-  Popconfirm,
-  Table,
-  Typography,
-  DatePicker,
-  Select,
-  Divider,
-  GetProps,
-} from "antd";
+import { Form, Input, Popconfirm, Table, Typography, Divider } from "antd";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
-  getFinanceList,
   updateFinance,
   deleteFinance,
 } from "../../features/finance/financeSlice";
@@ -54,25 +43,12 @@ const DeployedFinances: React.FC = () => {
       city: record.city,
       district: record.district,
       state: record.state,
+      ...record,
     });
-    // form.setFieldsValue({
-    //   madeByName: "",
-    //   madeDate: "",
-    //   testedByName: "",
-    //   testedDate: "",
-    //   ...record,
-    // });
     setEditingKey(record.finance_id);
   };
   const deleteFunction = (record: Partial<DataType>) => {
     dispatch(deleteFinance(record.finance_id));
-    // form.setFieldsValue({
-    //   madeByName: "",
-    //   madeDate: "",
-    //   testedByName: "",
-    //   testedDate: "",
-    //   ...record,
-    // });
     setEditingKey("");
   };
 
@@ -96,16 +72,8 @@ const DeployedFinances: React.FC = () => {
             state: row.state,
           })
         );
-
-        // newData.splice(index, 1, {
-        //   ...item,
-        //   ...row,
-        // });
-        // setData(newData);
         setEditingKey("");
       } else {
-        // newData.push(row);
-        // setData(newData);
         setEditingKey("");
       }
     } catch (errInfo) {}
@@ -171,12 +139,7 @@ const DeployedFinances: React.FC = () => {
               Edit
             </Typography.Link>
             <Divider type="vertical" />
-            <Typography.Link
-              disabled={editingKey !== ""}
-              // onClick={() => {
-              //   deleteFunction(record);
-              // }}
-            >
+            <Typography.Link disabled={editingKey !== ""}>
               <Popconfirm
                 title="Sure to Delete?"
                 onConfirm={() => deleteFunction(record)}
@@ -242,17 +205,6 @@ const DeployedFinances: React.FC = () => {
       }),
     };
   });
-  // useEffect(() => {
-  //   dispatch(
-  //     getEndpointList({
-  //       size: 1,
-  //       page: 3,
-  //       sortBy: "madeDate",
-  //       order: "ASE",
-  //       status: 0,
-  //     })
-  //   );
-  // }, [end_point.loading_update_endpoint]);
   return (
     <Form form={form} component={false}>
       <Table

@@ -1,6 +1,5 @@
 import React from "react";
 import { Row, Col, Card } from "antd";
-import StakedGraph from "./tag_stacked_graph";
 
 const DashboardIndex: React.FC = () => {
   return (

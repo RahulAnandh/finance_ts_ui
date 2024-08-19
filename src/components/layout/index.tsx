@@ -3,21 +3,15 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   DashboardOutlined,
-  ToolOutlined,
-  CloudUploadOutlined,
-  WifiOutlined,
-  TagOutlined,
   UserOutlined,
   LogoutOutlined,
-  ProfileOutlined,
   BankOutlined,
   UsergroupAddOutlined,
   PayCircleOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme, Avatar, Dropdown, Space } from "antd";
 import "./index.css";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Tagindex from "../tag";
 import DashboardIndex from "../dashboard";
 import FinanceIndex from "../finance";
@@ -25,7 +19,7 @@ import BankIndex from "../bank";
 import EmployeeIndex from "../employee";
 import type { MenuProps } from "antd";
 import NoPage from "../no_page";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { setIsLoggedIn } from "../../features/user/userSlice";
 
 const { Header, Sider, Content } = Layout;
@@ -67,7 +61,6 @@ const LayoutIndex: React.FC = () => {
       key: "3",
     },
   ];
-  // const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   return (
     <Layout className="user_layout">
@@ -123,7 +116,6 @@ const LayoutIndex: React.FC = () => {
           ]}
         />
       </Sider>
-      {/* <BrowserRouter> */}
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
           <Button
@@ -171,23 +163,7 @@ const LayoutIndex: React.FC = () => {
           </Routes>
         </Content>
       </Layout>
-      {/* </BrowserRouter> */}
     </Layout>
   );
 };
-
 export default LayoutIndex;
-
-{
-  /* <BrowserRouter>
-<Routes>
-  <Route path="/" element={<LayoutIndex />}>
-    <Route index element={<LayoutIndex />} />
-    <Route path="/end_point" element={<EndPointIndex />} />
-    <Route path="/repeter" element={<RepeterIndex />} />
-    <Route path="/tag" element={<Tagindex />} />
-    <Route path="*" element={<NoPage />} />
-  </Route>
-</Routes>
-</BrowserRouter> */
-}

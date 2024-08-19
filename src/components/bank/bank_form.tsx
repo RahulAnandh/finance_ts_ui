@@ -1,16 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  DatePicker,
-  Drawer,
-  Form,
-  Input,
-  Select,
-  Row,
-  Col,
-  Button,
-  GetProps,
-} from "antd";
-import dayjs from "dayjs";
+import { Drawer, Form, Input, Col, Button } from "antd";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   setBankFormActive,
@@ -25,7 +14,6 @@ const BankForm: React.FC = () => {
     dispatch(getUsershardwareTeam());
   }, []);
   const onFinish = (values: any) => {
-    console.log("1---A", values);
     dispatch(
       createBank({
         acc_no: values.acc_no,
@@ -40,11 +28,6 @@ const BankForm: React.FC = () => {
         bank_state: values.bank_state,
       })
     );
-  };
-  type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
-
-  const disabledDate: RangePickerProps["disabledDate"] = (current) => {
-    return current && current > dayjs().endOf("day");
   };
   return (
     <>

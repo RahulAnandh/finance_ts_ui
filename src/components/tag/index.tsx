@@ -13,7 +13,7 @@ const TagIndex: React.FC = () => {
   const tag = useAppSelector((state) => state.tag);
   useEffect(() => {
     messageApi.open({
-      type: tag.message.message_type,
+      // type: tag.message.message_type,
       content: tag.message.message_string,
     });
   }, [tag.message]);

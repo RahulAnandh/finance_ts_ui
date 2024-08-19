@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import {
-  Form,
-  Input,
-  Popconfirm,
-  Table,
-  Typography,
-  DatePicker,
-  Select,
-  Divider,
-} from "antd";
+import { Form, Input, Popconfirm, Table, Typography, Divider } from "antd";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
-  getEmployeeList,
   updateEmployee,
-  deleteEmployee,
   undoDeleteEmployee,
 } from "../../features/employee/employeeSlice";
 interface DataType {
@@ -62,17 +51,7 @@ const NonDeployedEmployees: React.FC = () => {
     });
     setEditingKey(record.id);
   };
-  const deleteFunction = (record: Partial<DataType>) => {
-    dispatch(deleteEmployee(record.id));
-    // form.setFieldsValue({
-    //   madeByName: "",
-    //   madeDate: "",
-    //   testedByName: "",
-    //   testedDate: "",
-    //   ...record,
-    // });
-    setEditingKey("");
-  };
+
   const undoDeleteFunction = (record: Partial<DataType>) => {
     dispatch(undoDeleteEmployee(record.id));
     setEditingKey("");
@@ -101,16 +80,8 @@ const NonDeployedEmployees: React.FC = () => {
             state: row.state,
           })
         );
-
-        // newData.splice(index, 1, {
-        //   ...item,
-        //   ...row,
-        // });
-        // setData(newData);
         setEditingKey("");
       } else {
-        // newData.push(row);
-        // setData(newData);
         setEditingKey("");
       }
     } catch (errInfo) {}
@@ -194,12 +165,7 @@ const NonDeployedEmployees: React.FC = () => {
               Edit
             </Typography.Link>
             <Divider type="vertical" />
-            <Typography.Link
-              disabled={editingKey !== ""}
-              // onClick={() => {
-              //   deleteFunction(record);
-              // }}
-            >
+            <Typography.Link disabled={editingKey !== ""}>
               <Popconfirm
                 title="Sure to Undo Delete?"
                 onConfirm={() => undoDeleteFunction(record)}
@@ -264,17 +230,6 @@ const NonDeployedEmployees: React.FC = () => {
       }),
     };
   });
-  // useEffect(() => {
-  //   dispatch(
-  //     getTagList({
-  //       size: 1,
-  //       page: 3,
-  //       sortBy: "madeDate",
-  //       order: "ASE",
-  //       status: 0,
-  //     })
-  //   );
-  // }, [tag.loading_update_tag]);
   return (
     <Form form={form} component={false}>
       <Table

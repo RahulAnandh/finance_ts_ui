@@ -1,7 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { TagState, TypeHardwareTeam, TypeCreateTag, TypeTagList } from "./type";
+import { TagState, TypeCreateTag } from "./type";
 import { BASE_URL } from "../constant";
 const initialState: TagState = {
   tag_form_active: false,

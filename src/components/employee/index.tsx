@@ -16,7 +16,6 @@ const EmployeeIndex: React.FC = () => {
   const employee = useAppSelector((state) => state.employee);
   useEffect(() => {
     messageApi.open({
-      type: employee.message.message_type,
       content: employee.message.message_string,
     });
   }, [employee.message]);

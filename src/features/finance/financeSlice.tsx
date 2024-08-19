@@ -1,12 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import {
-  FinanceState,
-  TypeHardwareTeam,
-  TypeCreateFinance,
-  TypeFinanceList,
-} from "./type";
+import { FinanceState, TypeCreateFinance } from "./type";
 import { BASE_URL } from "../constant";
 const initialState: FinanceState = {
   finance_form_active: false,

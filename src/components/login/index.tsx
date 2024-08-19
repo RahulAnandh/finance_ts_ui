@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import UserNamePasswordLogin from "./uname_pword_login";
 import MobileLogin from "./mobile_login";
 import LoginImage from "../../assets/hardware.png";
 import { message, Card, Tabs } from "antd";
-import type { TabsProps } from "antd";
 
 import LayoutIndex from "../layout";
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import "./index.css";
 const LoginIndex: React.FC = () => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -16,24 +15,11 @@ const LoginIndex: React.FC = () => {
   const user = useAppSelector((state) => state.user);
   useEffect(() => {
     messageApi.open({
-      type: user.message.message_type,
+      // type: user.message.message_type,
       content: user.message.message_string,
     });
   }, [user.message]);
 
-  console.log("1---1A", user);
-  const items: TabsProps["items"] = [
-    {
-      key: "1",
-      label: "Mobile",
-      children: <MobileLogin />,
-    },
-    {
-      key: "2",
-      label: "Credentials",
-      children: <UserNamePasswordLogin />,
-    },
-  ];
   return (
     <div className="login_page">
       {contextHolder}

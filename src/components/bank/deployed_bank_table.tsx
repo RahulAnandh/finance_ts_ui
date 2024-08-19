@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import {
-  Form,
-  Input,
-  Popconfirm,
-  Table,
-  Typography,
-  DatePicker,
-  Select,
-  Divider,
-  GetProps,
-} from "antd";
+import { Form, Input, Popconfirm, Table, Typography, Divider } from "antd";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  getBankList,
-  updateBank,
-  deleteBank,
-} from "../../features/bank/bankSlice";
+import { updateBank, deleteBank } from "../../features/bank/bankSlice";
 
 interface DataType {
   id: string;
@@ -67,24 +53,12 @@ const DeployedBanks: React.FC = () => {
       district: record.district,
       bank_state: record.bank_state,
     });
-    // form.setFieldsValue({
-    //   madeByName: "",
-    //   madeDate: "",
-    //   testedByName: "",
-    //   testedDate: "",
-    //   ...record,
-    // });
+
     setEditingKey(record.id);
   };
   const deleteFunction = (record: Partial<DataType>) => {
     dispatch(deleteBank(record.id));
-    // form.setFieldsValue({
-    //   madeByName: "",
-    //   madeDate: "",
-    //   testedByName: "",
-    //   testedDate: "",
-    //   ...record,
-    // });
+
     setEditingKey("");
   };
 
@@ -200,7 +174,6 @@ const DeployedBanks: React.FC = () => {
     {
       title: "operation",
       dataIndex: "operation",
-      fixed: "right",
       width: 150,
       render: (_: any, record: DataType) => {
         const editable = isEditing(record);
@@ -288,27 +261,14 @@ const DeployedBanks: React.FC = () => {
       ...col,
       onCell: (record: DataType) => ({
         record,
-        inputType:
-          col.dataIndex === "madeByName" || col.dataIndex === "testedByName"
-            ? "select"
-            : "date",
+        inputType: col.dataIndex === "date_of_birth" ? "date" : "select",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
       }),
     };
   });
-  // useEffect(() => {
-  //   dispatch(
-  //     getEndpointList({
-  //       size: 1,
-  //       page: 3,
-  //       sortBy: "madeDate",
-  //       order: "ASE",
-  //       status: 0,
-  //     })
-  //   );
-  // }, [end_point.loading_update_endpoint]);
+
   return (
     <Form form={form} component={false}>
       <Table

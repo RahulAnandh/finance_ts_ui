@@ -12,7 +12,7 @@ import {
   GetProps,
 } from "antd";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { getTagList, updateTag, deleteTag } from "../../features/tag/tagSlice";
+import { updateTag, deleteTag } from "../../features/tag/tagSlice";
 import dayjs from "dayjs";
 
 interface DataType {

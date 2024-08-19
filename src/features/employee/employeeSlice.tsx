@@ -1,13 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import {
-  EmployeeState,
-  TypeHardwareTeam,
-  TypeCreateEmployee,
-  TypeEmployeeList,
-  TypeUpdateEmployee,
-} from "./type";
+import { EmployeeState, TypeCreateEmployee, TypeUpdateEmployee } from "./type";
 import { BASE_URL } from "../constant";
 const initialState: EmployeeState = {
   employee_form_active: false,
@@ -128,7 +122,6 @@ export const undoDeleteEmployee = createAsyncThunk(
           "Access-Control-Allow-Origin": "*",
           Authorization: `Bearer ${auth_token}`,
         },
-        // body: JSON.stringify(payload),
       }
     );
     const data = response.json();

@@ -1,12 +1,10 @@
-import { MobileOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, GetProp } from "antd";
+import { MobileOutlined } from "@ant-design/icons";
+import { Button, Form, Input, GetProp } from "antd";
 import React, { useState } from "react";
 import "./index.css";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
-  loginPost,
   checkNumberExist,
-  setLoginType,
   otpVerification,
 } from "../../features/user/userSlice";
 import type { OTPProps } from "antd/es/input/OTP";

@@ -13,7 +13,7 @@ const BankIndex: React.FC = () => {
   const bank = useAppSelector((state) => state.bank);
   useEffect(() => {
     messageApi.open({
-      type: bank.message.message_type,
+      // type: bank.message.message_type,
       content: bank.message.message_string,
     });
   }, [bank.message]);

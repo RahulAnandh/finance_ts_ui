@@ -6,11 +6,9 @@ import {
   Drawer,
   Form,
   Input,
-  Select,
   Row,
   Col,
   Button,
-  GetProps,
   Upload,
   Image,
 } from "antd";
@@ -43,7 +41,6 @@ const EmployeeForm: React.FC = () => {
     dispatch(getUsershardwareTeam());
   }, []);
   const onFinish = (values: any) => {
-    console.log("1---A", values);
     dispatch(
       createEmployee({
         first_name: values.first_name,
@@ -55,11 +52,6 @@ const EmployeeForm: React.FC = () => {
         state: values.state,
       })
     );
-  };
-  type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
-
-  const disabledDate: RangePickerProps["disabledDate"] = (current) => {
-    return current && current > dayjs().endOf("day");
   };
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {

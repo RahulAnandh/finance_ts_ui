@@ -1,8 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import { TypeLoginData, UserState } from "./type";
-import axios, { AxiosResponse } from "axios";
 import { BASE_URL } from "../constant";
 const initialState: UserState = {
   user_name: "",
@@ -133,12 +131,10 @@ export const userSlice = createSlice({
       }
     );
     //------------------------------------------otpVerification--------------------------------------------------
-    builder.addCase(otpVerification.pending, (state) => {});
-    builder.addCase(otpVerification.rejected, (state) => {});
+
     builder.addCase(
       otpVerification.fulfilled,
       (state, action: PayloadAction<any>) => {
-        console.log("1---111", action.payload);
         if (action.payload.bearerToken === undefined) {
           state.message = {
             message_type: "error",
@@ -161,14 +157,13 @@ export const userSlice = createSlice({
     );
 
     //-----------------------------------------
-    builder.addCase(checkNumberExist.pending, (state) => {});
     builder.addCase(
       checkNumberExist.rejected,
       (state, action: PayloadAction<any>) => {
         state.otp_status = false;
         state.message = {
           message_type: "error",
-          message_string: "Sorry, OTP request Failed.",
+          message_string: action.payload.message,
         };
       }
     );

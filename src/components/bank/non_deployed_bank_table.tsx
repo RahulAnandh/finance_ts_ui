@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import {
-  Form,
-  Input,
-  Popconfirm,
-  Table,
-  Typography,
-  DatePicker,
-  Select,
-  Divider,
-} from "antd";
+import { Form, Input, Popconfirm, Table, Typography, Divider } from "antd";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  getBankList,
-  updateBank,
-  deleteBank,
-  undoDeleteBank,
-} from "../../features/bank/bankSlice";
+import { updateBank, undoDeleteBank } from "../../features/bank/bankSlice";
 interface DataType {
   id: string;
   ifsc: string;
@@ -68,17 +54,7 @@ const NonDeployedBanks: React.FC = () => {
     });
     setEditingKey(record.id);
   };
-  const deleteFunction = (record: Partial<DataType>) => {
-    dispatch(deleteBank(record.id));
-    // form.setFieldsValue({
-    //   madeByName: "",
-    //   madeDate: "",
-    //   testedByName: "",
-    //   testedDate: "",
-    //   ...record,
-    // });
-    setEditingKey("");
-  };
+
   const undoDeleteFunction = (record: Partial<DataType>) => {
     dispatch(undoDeleteBank(record.id));
     setEditingKey("");
@@ -111,15 +87,8 @@ const NonDeployedBanks: React.FC = () => {
           })
         );
 
-        // newData.splice(index, 1, {
-        //   ...item,
-        //   ...row,
-        // });
-        // setData(newData);
         setEditingKey("");
       } else {
-        // newData.push(row);
-        // setData(newData);
         setEditingKey("");
       }
     } catch (errInfo) {}
@@ -136,37 +105,37 @@ const NonDeployedBanks: React.FC = () => {
       title: "IFSC Code",
       dataIndex: "ifsc",
       width: 100,
-      editable: false,
+      editable: true,
     },
     {
       title: "Account No",
       dataIndex: "acc_no",
       width: 150,
-      editable: false,
+      editable: true,
     },
     {
       title: "Bank Name",
       dataIndex: "bank_name",
       width: 100,
-      editable: false,
+      editable: true,
     },
     {
       title: "Branch",
       dataIndex: "branch",
       width: 100,
-      editable: false,
+      editable: true,
     },
     {
       title: "Account Hol",
       dataIndex: "acc_hol",
       width: 150,
-      editable: false,
+      editable: true,
     },
     {
       title: "Account Type",
       dataIndex: "acc_type",
       width: 100,
-      editable: false,
+      editable: true,
     },
     {
       title: "Town",
@@ -195,12 +164,10 @@ const NonDeployedBanks: React.FC = () => {
     {
       title: "operation",
       dataIndex: "operation",
-      fixed: "right",
+      // fixed: "right",
       width: 150,
-
       render: (_: any, record: DataType) => {
         const editable = isEditing(record);
-
         return editable ? (
           <span>
             <Typography.Link
@@ -224,12 +191,7 @@ const NonDeployedBanks: React.FC = () => {
               Edit
             </Typography.Link>
             <Divider type="vertical" />
-            <Typography.Link
-              disabled={editingKey !== ""}
-              // onClick={() => {
-              //   deleteFunction(record);
-              // }}
-            >
+            <Typography.Link disabled={editingKey !== ""}>
               <Popconfirm
                 title="Sure to Undo Delete?"
                 onConfirm={() => undoDeleteFunction(record)}
@@ -284,27 +246,14 @@ const NonDeployedBanks: React.FC = () => {
       ...col,
       onCell: (record: DataType) => ({
         record,
-        inputType:
-          col.dataIndex === "madeByName" || col.dataIndex === "testedByName"
-            ? "select"
-            : "date",
+        inputType: col.dataIndex === "date_of_birth" ? "date" : "select",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
       }),
     };
   });
-  // useEffect(() => {
-  //   dispatch(
-  //     getTagList({
-  //       size: 1,
-  //       page: 3,
-  //       sortBy: "madeDate",
-  //       order: "ASE",
-  //       status: 0,
-  //     })
-  //   );
-  // }, [tag.loading_update_tag]);
+
   return (
     <Form form={form} component={false}>
       <Table

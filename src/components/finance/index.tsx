@@ -16,7 +16,7 @@ const FinanceIndex: React.FC = () => {
   const finance = useAppSelector((state) => state.finance);
   useEffect(() => {
     messageApi.open({
-      type: finance.message.message_type,
+      // type: finance.message.message_type,
       content: finance.message.message_string,
     });
   }, [finance.message]);
