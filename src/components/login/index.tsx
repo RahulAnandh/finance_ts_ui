@@ -25,11 +25,7 @@ const LoginIndex: React.FC = () => {
       {contextHolder}
       {user.is_logged_in !== true && (
         <>
-          <img
-            src={LoginImage}
-            className="login_page_image"
-            style={{ height: "100vh" }}
-          ></img>
+         
           <div className="login_page_form">
             <Card className="login_form_card">
               <Tabs
