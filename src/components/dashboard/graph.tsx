@@ -12,6 +12,7 @@ const DemoColumn = () => {
     yField: '月均降雨量',
     colorField: 'name',
     group: true,
+  
     style: {
       // 矩形四个方向的内边距
       inset: 5,
